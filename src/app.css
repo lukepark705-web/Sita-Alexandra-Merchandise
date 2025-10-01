@@ -1,7 +1,52 @@
-/* ---------- Fonts already defined above (unchanged) ---------- */
+/* =========================
+   Fonts
+   ========================= */
+@font-face {
+  font-family: 'CircularStd';
+  src: url('/fonts/Circular-Book.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'CircularStd';
+  src: url('/fonts/Circular-Medium.woff2') format('woff2');
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('/fonts/sf-pro-text-light.woff2') format('woff2');
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('/fonts/sf-pro-text-regular.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('/fonts/sf-pro-display-medium.woff2') format('woff2');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('/fonts/sf-pro-display-semibold.woff2') format('woff2');
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('/fonts/sf-pro-display-bold.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('/fonts/sf-pro-display-heavy.woff2') format('woff2');
+  font-weight: 800; font-style: normal; font-display: swap;
+}
 
-/* ---------- Tokens ---------- */
+/* =========================
+   Design Tokens
+   ========================= */
 :root{
+  /* Brand palette */
   --oxford:#11192d;
   --marian:#283b89;
   --robin:#58d8db;
@@ -9,6 +54,7 @@
   --violet:#9514d1;
   --rose:#bf0688;
 
+  /* App tokens */
   --bg:#fff;
   --ink:var(--oxford);
   --muted:#6b7280;
@@ -20,15 +66,21 @@
   --shadow-xs:0 1px 2px rgba(0,0,0,.06);
   --shadow-sm:0 2px 8px rgba(0,0,0,.08);
 
-  /* footer fallbacks */
+  /* Footer fallbacks */
   --border:#eaecef;
   --background:var(--bg);
   --text-color:var(--ink);
+
+  /* Product card shape controls */
+  --card-ratio: 4 / 5;   /* uniform tall card; use 1 / 1 for square */
+  --card-padding: 12px;  /* inner white frame */
 }
 
-/* ---------- Base ---------- */
-*{box-sizing:border-box}
-html,body{height:100%}
+/* =========================
+   Base
+   ========================= */
+*{ box-sizing:border-box }
+html,body{ height:100% }
 body{
   margin:0; background:var(--bg); color:var(--ink);
   -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
@@ -36,24 +88,34 @@ body{
   font-weight:400; line-height:1.45; letter-spacing:.01em;
   font-size:15px;
 }
-a{color:inherit; text-decoration:none}
-button{font:inherit}
-img{max-width:100%; display:block}
+a{ color:inherit; text-decoration:none }
+button{ font:inherit }
+img{ max-width:100%; display:block }
 
-.container{max-width:var(--maxw); margin:0 auto; padding:0 16px}
-.visually-hidden{position:absolute!important; height:1px; width:1px; overflow:hidden; clip:rect(1px,1px,1px,1px); white-space:nowrap}
+.container{ max-width:var(--maxw); margin:0 auto; padding:0 16px }
+.visually-hidden{
+  position:absolute!important; height:1px; width:1px; overflow:hidden;
+  clip:rect(1px,1px,1px,1px); white-space:nowrap;
+}
 
-/* ---------- Header ---------- */
+/* =========================
+   Header
+   ========================= */
 .site-header{
   position:sticky; top:0; z-index:50; background:rgba(255,255,255,.9);
   backdrop-filter:saturate(1.4) blur(8px); border-bottom:1px solid #f0f2f5;
 }
-.site-header .bar{ height:56px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
-.icon-btn{ display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:20px; border:1px solid #eaecef; background:#fff; }
-.brand{font-family:'CircularStd',system-ui; font-weight:600; letter-spacing:.04em}
-.brand a{display:inline-block; padding:4px 8px}
+.site-header .bar{
+  height:56px; display:flex; align-items:center; justify-content:space-between; gap:12px;
+}
+.icon-btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:40px; height:40px; border-radius:20px; border:1px solid #eaecef; background:#fff;
+}
+.brand{ font-family:'CircularStd',system-ui; font-weight:600; letter-spacing:.04em }
+.brand a{ display:inline-block; padding:4px 8px }
 
-/* ---------- Drawer ---------- */
+/* Drawer menu */
 .drawer{ position:fixed; inset:0; z-index:60; display:grid; grid-template-columns:min(80vw,320px) 1fr; }
 .drawer .panel{ background:#fff; border-right:1px solid #eee; padding:20px 16px 32px; box-shadow:var(--shadow-sm); }
 .drawer .backdrop{ background:rgba(0,0,0,.35) }
@@ -61,7 +123,9 @@ img{max-width:100%; display:block}
 .menu-item{ padding:14px 8px; border-bottom:1px solid #f3f4f6; display:flex; align-items:center; gap:10px; font-weight:600; }
 .badge{ font-size:11px; padding:2px 8px; border-radius:999px; background:var(--ink); color:#fff; opacity:.85; }
 
-/* ---------- Hero (NO CROP) ---------- */
+/* =========================
+   Hero (NO CROP)
+   ========================= */
 .hero{
   position:relative;
   overflow:hidden;
@@ -71,7 +135,7 @@ img{max-width:100%; display:block}
   width:100%;
   height:52vh;
   max-height:620px;
-  object-fit:contain;
+  object-fit:contain;          /* show full image */
   object-position:center;
   border-radius:0 0 24px 24px;
   background:#fff;
@@ -82,15 +146,23 @@ img{max-width:100%; display:block}
   box-shadow:var(--shadow-sm); font-weight:600; font-size:14px;
 }
 
-/* ---------- Section heading ---------- */
-.section-title{ margin:22px 12px 8px; font-weight:700; letter-spacing:.02em; font-family:'CircularStd',system-ui; }
+/* =========================
+   Section heading
+   ========================= */
+.section-title{
+  margin:22px 12px 8px; font-weight:700; letter-spacing:.02em;
+  font-family:'CircularStd',system-ui;
+}
 
-/* ---------- Carousel ---------- */
+/* =========================
+   Carousel
+   ========================= */
 .carousel{ position:relative; overflow:hidden; padding:8px 0 18px; }
 .carousel-track{
   display:grid; grid-auto-flow:column; grid-auto-columns:88vw;
   gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; scroll-padding:16px;
   padding:0 16px; -webkit-overflow-scrolling:touch;
+  align-items:stretch;                    /* ensure equal card heights */
 }
 .carousel-track > *{ scroll-snap-align:center }
 .carousel .nav{ position:absolute; inset:0; pointer-events:none; }
@@ -102,19 +174,32 @@ img{max-width:100%; display:block}
 .carousel button.arrow.prev{ left:6px }
 .carousel button.arrow.next{ right:6px }
 
-/* ---------- Product card ---------- */
+/* =========================
+   Product card (UNIFORM SIZE, NO CROPPING)
+   ========================= */
 .card{
-  position:relative; border-radius:18px; overflow:hidden; background:#fff; border:1px solid #eef1f4;
-  box-shadow:var(--shadow-xs);
-}
-.card .img-wrap{
-  width:100%;
-  aspect-ratio: 3 / 4;
+  position:relative;
+  border-radius:18px;
+  overflow:hidden;
   background:#fff;
-  display:grid; place-items:center;
+  border:1px solid #eef1f4;
+  box-shadow:var(--shadow-xs);
+  aspect-ratio: var(--card-ratio);       /* same width/height for all cards */
 }
+
+/* Image area fills the card */
+.card .img-wrap{
+  position:absolute; inset:0;            /* fill the card */
+  display:grid; place-items:center;
+  padding:var(--card-padding);
+  background:#fff;
+  border-radius:inherit;
+}
+
+/* Image fits inside without cropping */
 .card .img-wrap img{
-  width:100%; height:100%;
+  width:100%;
+  height:100%;
   object-fit:contain;
   object-position:center;
 }
@@ -124,22 +209,26 @@ img{max-width:100%; display:block}
   position:absolute; top:10px; right:10px; background:#fff; border:1px solid #eaecef;
   padding:6px 10px; border-radius:999px; font-weight:700; font-size:13px;
 }
-.tag .currency{opacity:.6; margin-right:2px}
+.tag .currency{ opacity:.6; margin-right:2px }
 
-/* Cart pill — now PURE BLACK for legibility */
+/* Cart pill — pure black for contrast */
 .to-cart{
   position:absolute; left:10px; bottom:10px;
   background:#000; color:#fff; border-radius:999px; display:inline-flex; align-items:center; gap:8px;
   padding:10px 12px; font-weight:600; font-size:13px; box-shadow:var(--shadow-sm);
 }
 
-/* ---------- Desktop tweaks ---------- */
+/* =========================
+   Desktop tweaks
+   ========================= */
 @media (min-width:780px){
   .carousel-track{ grid-auto-columns:min(340px,30vw) }
   .hero img{ height:62vh }
 }
 
-/* ---------- Mobile polish ---------- */
+/* =========================
+   Mobile polish
+   ========================= */
 .icon-btn{ width:44px; height:44px }
 .carousel-track{ scroll-snap-stop:always }
 @supports (height:1svh){
@@ -154,3 +243,149 @@ img{max-width:100%; display:block}
   .to-cart{ font-size:12px; padding:8px 10px }
 }
 .no-scroll{ overflow:hidden }
+
+
+/* =========================
+   Admin Products ( /admin/products )
+   ========================= */
+
+/* Page rhythm */
+.container > h2,
+.container > h3 { font-family: 'CircularStd', system-ui; letter-spacing:.01em; }
+
+.container > h2 { margin: 18px 0 12px; font-weight: 800; }
+.container > h3 { margin: 14px 0 10px; font-weight: 700; color: var(--muted); }
+
+/* Primary admin card (the create form) */
+.card-admin{
+  border:1px solid var(--border);
+  background:#fff;
+  border-radius:18px;
+  padding:16px;
+  box-shadow:0 10px 24px rgba(17,25,45,.04), var(--shadow-xs);
+}
+
+/* Form grid */
+.card-admin .grid2{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+  gap:12px;
+  align-items:end;
+}
+
+.card-admin label{
+  display:block;
+  margin:0 0 6px;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.02em;
+  color:var(--muted);
+}
+
+/* Inputs (scoped to admin card to avoid global impact) */
+.card-admin input[type="text"],
+.card-admin input[type="number"],
+.card-admin select{
+  width:100%;
+  padding:.72rem .9rem;
+  border:1px solid #e6e8ec;
+  border-radius:12px;
+  background:#fff;
+  transition:border-color .18s ease, box-shadow .18s ease;
+}
+.card-admin input:focus,
+.card-admin select:focus{
+  outline:0;
+  border-color:var(--marian);
+  box-shadow:0 0 0 3px rgba(40,59,137,.12);
+}
+
+/* File input – nice button */
+.card-admin input[type="file"]{
+  width:100%;
+  padding:.35rem .5rem;
+  border:1px dashed #e6e8ec;
+  border-radius:12px;
+  background:#fbfbfc;
+}
+.card-admin input[type="file"]::-webkit-file-upload-button,
+.card-admin input[type="file"]::file-selector-button{
+  background:#000; color:#fff; border:0; border-radius:10px;
+  padding:.55rem .9rem; margin-right:.6rem; font-weight:700; cursor:pointer;
+}
+.card-admin input[type="file"]::-webkit-file-upload-button:hover,
+.card-admin input[type="file"]::file-selector-button:hover{
+  filter:brightness(.95);
+}
+
+/* Create button */
+button.primary,
+.card-admin .primary{
+  margin-top:8px;
+  background:#000; color:#fff; border:0;
+  border-radius:999px; padding:.9rem 1.2rem;
+  font-weight:800; letter-spacing:.01em;
+  box-shadow:0 10px 24px rgba(0,0,0,.08);
+  transition:transform .06s ease, box-shadow .18s ease;
+}
+button.primary:hover{ transform:translateY(-1px); box-shadow:0 12px 28px rgba(0,0,0,.12); }
+button.primary:active{ transform:translateY(0); }
+
+/* Catalog grid */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(260px,1fr));
+  gap:14px;
+}
+
+.prod{
+  border:1px solid var(--border);
+  background:#fff;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 8px 20px rgba(17,25,45,.04);
+}
+
+.prod img{
+  width:100%; height:190px; object-fit:cover; background:#f8fafc;
+}
+
+.prod .meta{
+  padding:12px;
+  display:flex; flex-direction:column; gap:2px;
+}
+.prod .meta strong{ font-weight:700; }
+.prod .meta .muted{ color:var(--muted); font-size:12px; }
+
+/* Row with controls (price / buttons) */
+.prod .row{
+  display:flex; align-items:center; gap:8px;
+  padding:10px 12px; border-top:1px solid #f0f2f5;
+}
+.prod .row .price{
+  width:120px; min-width:110px;
+  padding:.6rem .7rem; border:1px solid #e6e8ec; border-radius:10px;
+}
+.prod .row button{
+  border:1px solid #e6e8ec; background:#fff; color:var(--ink);
+  border-radius:10px; padding:.6rem .8rem; font-weight:700;
+  transition:border-color .18s ease, background .18s ease;
+}
+.prod .row button:hover{ background:#f7f8fa; border-color:#e0e3e8; }
+
+/* Emphasis for destructive */
+.prod .row .danger{
+  color:#b00020; border-color:#f1c4c7; background:#fff;
+}
+.prod .row .danger:hover{ background:#fff5f5; border-color:#eaa3a8; }
+
+/* Admin floating action button already defined elsewhere; keep spacing for mobile safe-area */
+@supports (padding: max(0px)){
+  .admin-fab{ bottom: max(72px, env(safe-area-inset-bottom) + 64px); }
+}
+
+/* Tighten headings spacing on small screens */
+@media (max-width:540px){
+  .card-admin{ padding:14px }
+  .prod img{ height:170px }
+}

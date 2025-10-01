@@ -1,35 +1,82 @@
 <script lang="ts">
+	import { createEventDispatcher } from 'svelte';
+	import { session } from '$lib/stores/session';
+
 	export let open = false;
-	export let onClose: () => void = () => {};
-	export let links = [
-		{ label: 'Men', href: '#men' },
-		{ label: 'Women', href: '#women' },
-		{ label: 'Kids', href: '#kids' },
-		{ label: 'Games', href: '#games' },
-		{ label: 'Accessories', href: '#accessories' } // new
-	];
+	export let onClose: () => void;
+
+	const dispatch = createEventDispatcher();
+	function close() {
+		onClose?.();
+		dispatch('close');
+	}
 </script>
 
 {#if open}
 	<div class="drawer" role="dialog" aria-modal="true">
-		<nav class="panel">
-			<div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
-				<strong class="brand">Menu</strong>
-				<button class="icon-btn" on:click={onClose} aria-label="Close menu">✕</button>
-			</div>
+		<div class="panel">
+			<button class="icon-btn" aria-label="Close menu" on:click={close}>✕</button>
 
-			<ul class="menu-list">
-				{#each links as l}
+			<ul class="menu-list" role="list">
+				<li class="menu-item"><a href="#men" on:click={close}>Men</a></li>
+				<li class="menu-item"><a href="#women" on:click={close}>Women</a></li>
+				<li class="menu-item"><a href="#kids" on:click={close}>Kids</a></li>
+				<li class="menu-item"><a href="#games" on:click={close}>Games</a></li>
+				<li class="menu-item">
+					<a href="#accessories" on:click={close}>Accessories & Collectibles</a>
+				</li>
+
+				{#if $session.user?.role === 'admin'}
 					<li class="menu-item">
-						<a href={l.href} on:click={onClose}>{l.label}</a>
+						<a href="/admin/products" on:click={close}>Admin · Products</a>
+						<span class="badge">admin</span>
 					</li>
-				{/each}
+				{/if}
 			</ul>
+		</div>
 
-			<div style="margin-top:16px">
-				<span class="badge">Limited Edition</span>
-			</div>
-		</nav>
-		<div class="backdrop" on:click={onClose} />
+		<!-- backdrop -->
+		<div class="backdrop" on:click={close} />
 	</div>
 {/if}
+
+<style>
+	.drawer {
+		position: fixed;
+		inset: 0;
+		z-index: 60;
+		display: grid;
+		grid-template-columns: min(80vw, 320px) 1fr;
+	}
+	.panel {
+		background: #fff;
+		border-right: 1px solid #eee;
+		padding: 20px 16px 32px;
+		box-shadow: var(--shadow-sm);
+	}
+	.backdrop {
+		background: rgba(0, 0, 0, 0.35);
+	}
+	.menu-list {
+		list-style: none;
+		padding: 0;
+		margin: 12px 0 0;
+	}
+	.menu-item {
+		padding: 14px 8px;
+		border-bottom: 1px solid #f3f4f6;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 10px;
+		font-weight: 600;
+	}
+	.badge {
+		font-size: 11px;
+		padding: 2px 8px;
+		border-radius: 999px;
+		background: var(--ink);
+		color: #fff;
+		opacity: 0.85;
+	}
+</style>
