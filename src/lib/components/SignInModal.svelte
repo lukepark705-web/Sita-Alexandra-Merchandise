@@ -47,16 +47,16 @@
 		<button class="x" on:click={() => dispatch('close')} aria-label="Close">×</button>
 		{#if step === 'email'}
 			<h3>Sign in to save your cart</h3>
-			<label>Email</label>
-			<input type="email" bind:value={email} placeholder="you@example.com" />
+			<label for="email-input">Email</label>
+			<input id="email-input" type="email" bind:value={email} placeholder="you@example.com" />
 			<button class="primary" disabled={busy || !email} on:click={sendEmail}>Send code</button>
 			{#if error}<p class="err">{error}</p>{/if}
 		{:else}
 			<h3>Enter the 6-digit code</h3>
-			<label>Code</label>
-			<input inputmode="numeric" maxlength="6" bind:value={code} />
-			<label style="margin-top:.5rem">Display name (optional)</label>
-			<input bind:value={name} placeholder="Sita" />
+			<label for="code-input">Code</label>
+			<input id="code-input" inputmode="numeric" maxlength="6" bind:value={code} />
+			<label for="name-input" style="margin-top:.5rem">Display name (optional)</label>
+			<input id="name-input" bind:value={name} placeholder="Sita" />
 			<button class="primary" disabled={busy || code.length < 6} on:click={verify}>Verify</button>
 			{#if error}<p class="err">{error}</p>{/if}
 		{/if}

@@ -145,8 +145,8 @@
 		width: 100%; /* keep items within container */
 	}
 
-	.social-link,
-	.link-chip {
+	/* Removed .link-chip to avoid unused selector warning */
+	.social-link {
 		display: inline-flex;
 		align-items: center;
 		gap: 0.6rem;
@@ -173,7 +173,8 @@
 		display: grid;
 		place-items: center;
 	}
-	.social-link .icon svg {
+	/* Use :global to reach into the SocialIcon child component */
+	.social-link .icon :global(svg) {
 		filter: none !important; /* neutralize any global grayscale filters */
 	}
 

@@ -83,11 +83,11 @@
 		<h2 class="ttl">Image Manager</h2>
 		<div class="card-admin">
 			<div class="row">
-				<label>Product ID (slug)</label>
-				<input placeholder="e.g. arena-tee" bind:value={productId} />
+				<label for="product-id">Product ID (slug)</label>
+				<input id="product-id" placeholder="e.g. arena-tee" bind:value={productId} />
 			</div>
 			<div class="row">
-				<label>Choose image</label>
+				<label for="newfile">Choose image</label>
 				<input id="newfile" type="file" accept="image/*" on:change={pick} />
 			</div>
 			<button class="primary" on:click={uploadNew}>Upload</button>
