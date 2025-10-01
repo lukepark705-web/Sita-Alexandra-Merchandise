@@ -35,8 +35,8 @@
 			</ul>
 		</div>
 
-		<!-- backdrop -->
-		<div class="backdrop" on:click={close} />
+		<!-- backdrop must be interactive (a11y) and not self-closing -->
+		<button type="button" class="backdrop" aria-label="Close menu" on:click={close}></button>
 	</div>
 {/if}
 
@@ -56,6 +56,11 @@
 	}
 	.backdrop {
 		background: rgba(0, 0, 0, 0.35);
+		border: 0;
+		padding: 0;
+		margin: 0;
+		width: 100%;
+		height: 100%;
 	}
 	.menu-list {
 		list-style: none;
