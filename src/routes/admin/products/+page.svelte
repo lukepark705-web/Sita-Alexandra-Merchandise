@@ -53,7 +53,7 @@
 			fd.append('active', String(active));
 			fd.append('file', file);
 
-			const r = await fetch('/api/admin/products', { method: 'POST', body: fd });
+			const r = await fetch('/api/admin/product', { method: 'POST', body: fd });
 			if (!r.ok) {
 				alert('Create failed');
 			} else {
